@@ -131,7 +131,17 @@ public class SlavaLinkedList<E>  implements List<E> {
 
     @Override
     public E set(int index, E element) {
-        return null;
+        if(index < 0 || index >= size){
+            throw new IndexOutOfBoundsException("demo");
+        } else {
+            Node<E> x = first;
+            for (int i = 1; i <= index; i++) {
+                x = x.next;
+                x.item = element;
+            }
+            return x.item;
+        }
+
     }
 
     @Override

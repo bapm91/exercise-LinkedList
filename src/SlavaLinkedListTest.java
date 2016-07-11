@@ -129,7 +129,13 @@ public class SlavaLinkedListTest {
 
     @org.junit.Test
     public void set() throws Exception {
-
+        List<String> list = new SlavaLinkedList<>();
+        list.add("yo");
+        list.add("ynbivfo");
+        list.add("yvro");
+        list.add("ymo");
+        list.set(2,"test");
+        assertEquals("test", list.get(2));
     }
 
     @org.junit.Test
