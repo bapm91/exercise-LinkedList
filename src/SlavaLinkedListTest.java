@@ -27,7 +27,15 @@ public class SlavaLinkedListTest {
 
     @org.junit.Test
     public void isEmpty() throws Exception {
-
+        List<String> list = new SlavaLinkedList<>();
+        assertEquals(true, list.isEmpty());
+        list.add("yo");
+        list.add("ynbivfo");
+        list.add("yvro");
+        list.add("ymo");
+        assertEquals(false, list.isEmpty());
+        list.clear();
+        assertTrue(list.isEmpty());
     }
 
     @org.junit.Test
