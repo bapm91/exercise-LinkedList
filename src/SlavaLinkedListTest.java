@@ -1,6 +1,7 @@
 import java.util.List;
 
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class SlavaLinkedListTest {
     @org.junit.Before
@@ -8,7 +9,7 @@ public class SlavaLinkedListTest {
 
     }
 
-    @org.junit.Test
+    @Test
     public void size() throws Exception {
         List<String> list = new SlavaLinkedList<>();
         assertEquals(0, list.size());
@@ -21,7 +22,7 @@ public class SlavaLinkedListTest {
         assertEquals(0, list.size());
     }
 
-    @org.junit.Test
+    @Test
     public void isEmpty() throws Exception {
         List<String> list = new SlavaLinkedList<>();
         assertEquals(true, list.isEmpty());
@@ -34,27 +35,27 @@ public class SlavaLinkedListTest {
         assertTrue(list.isEmpty());
     }
 
-    @org.junit.Test
+    @Test
     public void contains() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void toArray() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void toArray1() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void add() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void remove() throws Exception {
         List<String> list = new SlavaLinkedList<>();
         list.add("first");
@@ -90,47 +91,95 @@ public class SlavaLinkedListTest {
         }
     }
 
-    @org.junit.Test
+    @Test
+    public void remove_garbagePrev() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("first");
+        list.add("second");
+
+
+    }
+
+    @Test
+    public void remove_one() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("first");
+        list.remove(0);
+        assertEquals(0, list.size());
+    }
+
+    @Test
+    public void remove_oneBadMLast() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("first");
+        list.add("2nd");
+        list.add("3rd");
+        list.remove(2);
+        assertEquals("first", list.get(0));
+        assertEquals("2nd", list.get(1));
+
+        list.add("3rd-bis");
+        assertEquals(3, list.size());
+        assertEquals("first", list.get(0));
+        assertEquals("2nd", list.get(1));
+        assertEquals("3rd-bis", list.get(2));
+
+        list.remove(1);
+        assertEquals("first", list.get(0));
+        assertEquals("3rd-bis", list.get(1));
+        assertEquals(2, list.size());
+
+        list.remove(1);
+        assertEquals("first", list.get(0));
+        assertEquals(1, list.size());
+
+        list.add("2nd-bis");
+        assertEquals(2, list.size());
+        assertEquals("first", list.get(0));
+        assertEquals("2nd-bis", list.get(1));
+    }
+
+    @Test
     public void containsAll() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void addAll() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void addAll1() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void removeAll() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void removeIf() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void retainAll() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void replaceAll() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void clear() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void get() throws Exception {
         List<String> list = new SlavaLinkedList<>();
         list.add("yo");
@@ -154,7 +203,7 @@ public class SlavaLinkedListTest {
         }
     }
 
-    @org.junit.Test
+    @Test
     public void set() throws Exception {
         List<String> list = new SlavaLinkedList<>();
         list.add("yo");
@@ -165,27 +214,27 @@ public class SlavaLinkedListTest {
         assertEquals("test", list.get(2));
     }
 
-    @org.junit.Test
+    @Test
     public void add1() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void remove1() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void indexOf() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void lastIndexOf() throws Exception {
 
     }
 
-    @org.junit.Test
+    @Test
     public void subList() throws Exception {
 
     }

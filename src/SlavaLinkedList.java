@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 public class SlavaLinkedList<E> implements List<E> {
 
     private transient int size = 0;
-    transient Node<E> mFirst;
-    transient Node<E> mLast;
+    private transient Node<E> mFirst;
+    private transient Node<E> mLast;
 
     public SlavaLinkedList() {
     }
@@ -49,20 +49,20 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        final Node<E> l = mLast;
-        final Node<E> newNode = new Node<>(l, e, null);
+        final Node<E> oldLast = mLast;
+        final Node<E> newNode = new Node<>(oldLast, e, null);
         mLast = newNode;
-        if (l == null)
+        if (oldLast == null)
             mFirst = newNode;
         else
-            l.next = newNode;
+            oldLast.next = newNode;
         size++;
         return true;
     }
 
     @Override
     public boolean remove(Object o) {
-        Node<E> x = mFirst;
+//        Node<E> x = mFirst;
         if (size != 0) {
             mFirst = null;
             size--;
@@ -123,16 +123,16 @@ public class SlavaLinkedList<E> implements List<E> {
     public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
-        } if (index == 0){
+        }
+        if (index == 0) {
             return mFirst.item;
         } else {
             Node<E> x = mFirst;
-            for (int i = 1; i <= index; i++) {
+            for (int i = 0; i < index; i++) {
                 x = x.next;
             }
             return x.item;
         }
-
     }
 
     @Override
@@ -157,7 +157,7 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        E element ;
+        E element;
         Node<E> x = mFirst;
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
@@ -166,41 +166,42 @@ public class SlavaLinkedList<E> implements List<E> {
         if (size == 1) {
             element = mFirst.item;
             mFirst = null;
-            return element;
-        }
-        /*
-        if (size == 2) {
-            element = mLast.item;
             mLast = null;
-            return element;
-        }
-        */
-        if (index == size - 1) {
-            element = mLast.item;
-            mLast = x.prev;
             size--;
             return element;
         }
 
-        if (index == 0) {
-            element = mFirst.item;
-            mFirst = x.next;
-            size--;
-            return element;
-        }
+        for (int i = 0; i <= size; i++) {
+            if (index == 0) {
+                element = mFirst.item;
+                mFirst = x.next;
+                size--;
+                return element;
 
-        for (int i = 1; i <= size; i++) {
+            }
             if (i == index && index <= size - 2) {
-                element = x.item;
+                element = x.next.item;
                 x.next = x.next.next;
                 size--;
                 return element;
+
+            }
+            if (i == index && index == size - 1) {
+                element = x.next.item;
+                x.next = null;
+                mLast = x;
+                size--;
+                return element;
+
+            }
+            if (i == 0) {
+                continue;
             } else {
                 x = x.next;
             }
         }
 
-        return x.item;
+        return mFirst.item;
     }
 
     @Override
