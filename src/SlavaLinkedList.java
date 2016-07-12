@@ -123,6 +123,8 @@ public class SlavaLinkedList<E> implements List<E> {
     public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
+        } if (index == 0){
+            return mFirst.item;
         } else {
             Node<E> x = mFirst;
             for (int i = 1; i <= index; i++) {
@@ -155,33 +157,49 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
+        E element ;
         Node<E> x = mFirst;
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
         }
 
         if (size == 1) {
+            element = mFirst.item;
             mFirst = null;
+            return element;
         }
-
-        if (index == size - 1) {
+        /*
+        if (size == 2) {
+            element = mLast.item;
             mLast = null;
+            return element;
+        }
+        */
+        if (index == size - 1) {
+            element = mLast.item;
+            mLast = x.prev;
+            size--;
+            return element;
         }
 
         if (index == 0) {
+            element = mFirst.item;
             mFirst = x.next;
             size--;
+            return element;
         }
 
         for (int i = 1; i <= size; i++) {
             if (i == index && index <= size - 2) {
+                element = x.item;
                 x.next = x.next.next;
                 size--;
-                break;
+                return element;
             } else {
                 x = x.next;
             }
         }
+
         return x.item;
     }
 

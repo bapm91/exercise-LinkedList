@@ -61,24 +61,19 @@ public class SlavaLinkedListTest {
         list.add(null);
         list.add("third");
         list.add("");
-        list.remove(2);
-        assertEquals("", list.get(2));
+        list.remove(3);
+        assertEquals("third", list.get(2));
         list.remove(0);
         assertEquals(2, list.size());
-        assertEquals("", list.get(1));
+        assertEquals("third", list.get(1));
         list.clear();
         assertEquals(0, list.size());
 
         list.add("first");
-        list.remove(0);
-        assertEquals(0, list.size());
-
-        try {
-            list.get(0);
-            fail("IndexOutOfBoundsException expected here");
-        } catch (IndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
+        list.add("2");
+        list.remove(1);
+        assertEquals(1, list.size());
+        assertEquals("first", list.get(0));
 
         try {
             list.get(5);
@@ -142,7 +137,7 @@ public class SlavaLinkedListTest {
         list.add("ynbivfo");
         list.add("yvro");
         list.add("ymo");
-        assertEquals("yvro", list.get(2));
+        assertEquals("ymo", list.get(3));
 
         try {
             list.get(5);
