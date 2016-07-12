@@ -1,11 +1,7 @@
-import java.util.EmptyStackException;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by User on 11.07.2016.
- */
 public class SlavaLinkedListTest {
     @org.junit.Before
     public void setUp() throws Exception {
@@ -60,7 +56,43 @@ public class SlavaLinkedListTest {
 
     @org.junit.Test
     public void remove() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("first");
+        list.add(null);
+        list.add("third");
+        list.add("");
+        list.remove(2);
+        assertEquals("", list.get(2));
+        list.remove(0);
+        assertEquals(2, list.size());
+        assertEquals("", list.get(1));
+        list.clear();
+        assertEquals(0, list.size());
 
+        list.add("first");
+        list.remove(0);
+        assertEquals(0, list.size());
+
+        try {
+            list.get(0);
+            fail("IndexOutOfBoundsException expected here");
+        } catch (IndexOutOfBoundsException e) {
+            assertTrue(true);
+        }
+
+        try {
+            list.get(5);
+            fail("IndexOutOfBoundsException expected here");
+        } catch (IndexOutOfBoundsException e) {
+            assertTrue(true);
+        }
+
+        try {
+            list.get(-1);
+            fail("IndexOutOfBoundsException expected here");
+        } catch (IndexOutOfBoundsException e) {
+            assertTrue(true);
+        }
     }
 
     @org.junit.Test

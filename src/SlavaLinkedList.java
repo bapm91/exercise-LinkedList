@@ -4,13 +4,14 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-public class SlavaLinkedList<E>  implements List<E> {
-    //List<E> list = new LinkedList<E>();
-    private transient int size = 0;
-    transient Node<E> first;
-    transient Node<E> last;
+public class SlavaLinkedList<E> implements List<E> {
 
-    public SlavaLinkedList(){}
+    private transient int size = 0;
+    transient Node<E> mFirst;
+    transient Node<E> mLast;
+
+    public SlavaLinkedList() {
+    }
 
     public int size() {
         return size;
@@ -48,11 +49,11 @@ public class SlavaLinkedList<E>  implements List<E> {
 
     @Override
     public boolean add(E e) {
-        final Node<E> l = last;
+        final Node<E> l = mLast;
         final Node<E> newNode = new Node<>(l, e, null);
-        last = newNode;
+        mLast = newNode;
         if (l == null)
-            first = newNode;
+            mFirst = newNode;
         else
             l.next = newNode;
         size++;
@@ -61,12 +62,14 @@ public class SlavaLinkedList<E>  implements List<E> {
 
     @Override
     public boolean remove(Object o) {
-        Node<E> item = last;
-        if (size != 0 ) {
-
+        Node<E> x = mFirst;
+        if (size != 0) {
+            mFirst = null;
             size--;
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     @Override
@@ -111,35 +114,36 @@ public class SlavaLinkedList<E>  implements List<E> {
 
     @Override
     public void clear() {
-        first = null;
-        last = null;
+        mFirst = null;
+        mLast = null;
         size = 0;
     }
 
     @Override
     public E get(int index) {
-        if(index < 0 || index >= size){
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
         } else {
-            Node<E> x = first;
+            Node<E> x = mFirst;
             for (int i = 1; i <= index; i++) {
                 x = x.next;
             }
             return x.item;
         }
+
     }
 
     @Override
     public E set(int index, E element) {
-        if(index < 0 || index >= size){
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
         } else {
-            Node<E> x = first;
+            Node<E> x = mFirst;
             for (int i = 1; i <= index; i++) {
                 x = x.next;
-                x.item = element;
+
             }
-            return x.item;
+            return x.item = element;
         }
 
     }
@@ -151,7 +155,34 @@ public class SlavaLinkedList<E>  implements List<E> {
 
     @Override
     public E remove(int index) {
-        return null;
+        Node<E> x = mFirst;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("demo");
+        }
+
+        if (size == 1) {
+            mFirst = null;
+        }
+
+        if (index == size - 1) {
+            mLast = null;
+        }
+
+        if (index == 0) {
+            mFirst = x.next;
+            size--;
+        }
+
+        for (int i = 1; i <= size; i++) {
+            if (i == index && index <= size - 2) {
+                x.next = x.next.next;
+                size--;
+                break;
+            } else {
+                x = x.next;
+            }
+        }
+        return x.item;
     }
 
     @Override
@@ -275,12 +306,12 @@ public class SlavaLinkedList<E>  implements List<E> {
         // assert isElementIndex(index);
 
         if (index < (size >> 1)) {
-            Node<E> x = first;
+            Node<E> x = mFirst;
             for (int i = 0; i < index; i++)
                 x = x.next;
             return x;
         } else {
-            Node<E> x = last;
+            Node<E> x = mLast;
             for (int i = size - 1; i > index; i--)
                 x = x.prev;
             return x;
