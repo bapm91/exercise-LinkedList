@@ -171,33 +171,32 @@ public class SlavaLinkedList<E> implements List<E> {
             return element;
         }
 
-        for (int i = 0; i <= size; i++) {
-            if (index == 0) {
-                element = mFirst.item;
-                mFirst = x.next;
-                size--;
-                return element;
+        if (index == 0) {
+            element = mFirst.item;
+            mFirst = x.next;
+            size--;
+            return element;
+        }
 
+        for (int i = 1; i <= size; i++) {
+            if (i != index) {
+                x = x.next;
+                continue;
             }
-            if (i == index && index <= size - 2) {
+
+            if (index <= size - 2) {
                 element = x.next.item;
                 x.next = x.next.next;
                 size--;
                 return element;
-
             }
-            if (i == index && index == size - 1) {
+
+            if (index == size - 1) {
                 element = x.next.item;
                 x.next = null;
                 mLast = x;
                 size--;
                 return element;
-
-            }
-            if (i == 0) {
-                continue;
-            } else {
-                x = x.next;
             }
         }
 
