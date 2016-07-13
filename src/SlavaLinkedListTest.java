@@ -75,7 +75,7 @@ public class SlavaLinkedListTest {
         List<String> list = new SlavaLinkedList<>();
         list.add("first");
         list.add("3rd");
-        list.add("2nd");
+        list.add(null);
         list.add("");
         list.add("3rd");
         list.add("2nd");
@@ -85,7 +85,7 @@ public class SlavaLinkedListTest {
 
         assertTrue(list.remove("3rd"));
         assertEquals(8 , list.size());
-        assertEquals("2nd", list.get(1));
+        assertEquals(null, list.get(1));
 
         assertTrue(list.remove(""));
         assertEquals(7 , list.size());

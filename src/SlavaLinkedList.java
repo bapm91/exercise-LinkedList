@@ -50,7 +50,7 @@ public class SlavaLinkedList<E> implements List<E> {
     @Override
     public boolean add(E e) {
         final Node<E> oldLast = mLast;
-        final Node<E> newNode = new Node<>(oldLast, e, null);
+        final Node<E> newNode = new Node<>(e, null);
         mLast = newNode;
         if (oldLast == null)
             mFirst = newNode;
@@ -60,20 +60,46 @@ public class SlavaLinkedList<E> implements List<E> {
         return true;
     }
 
+    private E destroy(Node<E> xPrev, Node<E> x) {
+        Node<E> element = x;
+        Node<E> next = x.next;
+
+        if (xPrev == null) {
+            mFirst = mFirst.next;
+        } else {
+            xPrev.next = x.next;
+        }
+
+        if (next == null) {
+            mLast = xPrev;
+        } else {
+            xPrev.next = x.next;
+        }
+
+        size--;
+        return element.item;
+    }
+
     @Override
     public boolean remove(Object o) {
         Node<E> x = mFirst;
+        Node<E> xPrev = null;
         for (int i = 0; i <= size - 1; i++, x = x.next) {
-            if (o == null ){
-                if (x.item == null){
-                    remove(i);
+            if (o == null) {
+                if (x.item == null) {
+                    destroy(xPrev, x);
                     return true;
                 }
             } else {
-                if (x.item != null && o.equals(x.item)){
-                    remove(i);
+                if (x.item != null && o.equals(x.item)) {
+                    destroy(xPrev, x);
                     return true;
                 }
+            }
+            if (i == 0) {
+                xPrev = mFirst;
+            } else {
+                xPrev = xPrev.next;
             }
         }
         return false;
@@ -176,29 +202,23 @@ public class SlavaLinkedList<E> implements List<E> {
         }
 
         if (index == 0) {
-            mFirst = mFirst.next;
-            size--;
+            destroy(null, mFirst);
             return element;
         }
 
 
-        Node<E> x = mFirst;
+        Node<E> x = mFirst.next;
+        Node<E> xPrev = mFirst;
+
         for (int i = 1; i <= size; i++) {
             if (i != index) {
                 x = x.next;
+                xPrev = xPrev.next;
                 continue;
-            }
-
-            element = x.next.item;
-            if (index == size - 1) {
-                mLast = x;
-                x.next = null;
             } else {
-                x.next = x.next.next;
+                destroy(xPrev, x);
             }
         }
-
-        size--;
         return element;
     }
 
@@ -319,31 +339,29 @@ public class SlavaLinkedList<E> implements List<E> {
 //        }
 //    }
 
-    Node<E> node(int index) {
-        // assert isElementIndex(index);
-
-        if (index < (size >> 1)) {
-            Node<E> x = mFirst;
-            for (int i = 0; i < index; i++)
-                x = x.next;
-            return x;
-        } else {
-            Node<E> x = mLast;
-            for (int i = size - 1; i > index; i--)
-                x = x.prev;
-            return x;
-        }
-    }
+//    Node<E> node(int index) {
+//        // assert isElementIndex(index);
+//
+//        if (index < (size >> 1)) {
+//            Node<E> x = mFirst;
+//            for (int i = 0; i < index; i++)
+//                x = x.next;
+//            return x;
+//        } else {
+//            Node<E> x = mLast;
+//            for (int i = size - 1; i > index; i--)
+//                x = x.prev;
+//            return x;
+//        }
+//    }
 
     private static class Node<E> {
         E item;
         Node<E> next;
-        Node<E> prev;
 
-        Node(Node<E> prev, E element, Node<E> next) {
+        Node(E element, Node<E> next) {
             this.item = element;
             this.next = next;
-            this.prev = prev;
         }
     }
 }
