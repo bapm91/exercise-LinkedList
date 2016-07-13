@@ -157,50 +157,38 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        E element;
-        Node<E> x = mFirst;
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
         }
 
         if (size == 1) {
-            element = mFirst.item;
             mFirst = null;
             mLast = null;
-            size--;
-            return element;
         }
 
         if (index == 0) {
-            element = mFirst.item;
-            mFirst = x.next;
-            size--;
-            return element;
+            mFirst = mFirst.next;
         }
 
+        E element = mFirst.item;
+        Node<E> x = mFirst;
         for (int i = 1; i <= size; i++) {
             if (i != index) {
                 x = x.next;
                 continue;
             }
 
-            if (index <= size - 2) {
-                element = x.next.item;
-                x.next = x.next.next;
-                size--;
-                return element;
-            }
-
+            element = x.next.item;
             if (index == size - 1) {
-                element = x.next.item;
-                x.next = null;
                 mLast = x;
-                size--;
-                return element;
+                x.next = null;
+            } else {
+                x.next = x.next.next;
             }
         }
 
-        return mFirst.item;
+        size--;
+        return element;
     }
 
     @Override
