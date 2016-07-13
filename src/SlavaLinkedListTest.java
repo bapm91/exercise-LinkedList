@@ -277,12 +277,31 @@ public class SlavaLinkedListTest {
         assertEquals(1, list.indexOf("3rd"));
         assertEquals(3, list.indexOf("11th"));
         assertEquals(2, list.indexOf(null));
+        assertEquals(-1, list.indexOf("-1"));
 
     }
 
     @Test
     public void lastIndexOf() throws Exception {
-
+        List<String> list = new SlavaLinkedList<>();
+        list.add("first");
+        list.add("3rd");
+        list.add(null);
+        list.add("11th");
+        list.add("3rd");
+        list.add("2nd");
+        list.add("4th");
+        list.add("first");
+        list.add("11th");
+        list.add("2nd");
+        list.add("11th");
+        list.add(null);
+        assertEquals(-1, list.lastIndexOf("-1"));
+        assertEquals(9, list.lastIndexOf("2nd"));
+        assertEquals(7, list.lastIndexOf("first"));
+        assertEquals(4, list.lastIndexOf("3rd"));
+        assertEquals(10, list.lastIndexOf("11th"));
+        assertEquals(11, list.lastIndexOf(null));
     }
 
     @Test

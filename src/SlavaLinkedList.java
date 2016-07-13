@@ -249,7 +249,21 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        int index = -1;
+        Node<E> x = mFirst;
+        for (int i = 0; i < size; i++) {
+            if (o == null) {
+                if (x.item == null){
+                    index = i;
+                }
+            } else {
+                if (o.equals(x.item)) {
+                    index = i;
+                }
+            }
+            x = x.next;
+        }
+        return index;
     }
 
     @Override
