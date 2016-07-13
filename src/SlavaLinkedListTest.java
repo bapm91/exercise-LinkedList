@@ -107,8 +107,6 @@ public class SlavaLinkedListTest {
         List<String> list = new SlavaLinkedList<>();
         list.add("first");
         list.add("second");
-
-
     }
 
     @Test
@@ -117,6 +115,10 @@ public class SlavaLinkedListTest {
         list.add("first");
         list.remove(0);
         assertEquals(0, list.size());
+
+        list.add("1st");
+        list.add("2nd");
+        assertEquals("2nd", list.remove(1));
     }
 
     @Test

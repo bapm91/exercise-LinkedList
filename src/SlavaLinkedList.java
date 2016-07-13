@@ -61,7 +61,6 @@ public class SlavaLinkedList<E> implements List<E> {
     }
 
     private E destroy(Node<E> xPrev, Node<E> x) {
-        Node<E> element = x;
         Node<E> next = x.next;
 
         if (xPrev == null) {
@@ -72,12 +71,12 @@ public class SlavaLinkedList<E> implements List<E> {
 
         if (next == null) {
             mLast = xPrev;
-        } else {
+        } else if (xPrev != null) {
             xPrev.next = x.next;
         }
 
         size--;
-        return element.item;
+        return x.item;
     }
 
     @Override
@@ -96,6 +95,7 @@ public class SlavaLinkedList<E> implements List<E> {
                     return true;
                 }
             }
+
             if (i == 0) {
                 xPrev = mFirst;
             } else {
@@ -193,33 +193,20 @@ public class SlavaLinkedList<E> implements List<E> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
         }
-        E element = mFirst.item;
-        if (size == 1) {
-            mFirst = null;
-            mLast = null;
-            size--;
-            return element;
-        }
 
-        if (index == 0) {
-            destroy(null, mFirst);
-            return element;
-        }
+        Node<E> x = mFirst;
+        Node<E> xPrev = null;
 
-
-        Node<E> x = mFirst.next;
-        Node<E> xPrev = mFirst;
-
-        for (int i = 1; i <= size; i++) {
-            if (i != index) {
-                x = x.next;
-                xPrev = xPrev.next;
-                continue;
-            } else {
-                destroy(xPrev, x);
+        for (int i = 0; i < size; i++) {
+            if (i == index) {
+                return destroy(xPrev, x);
             }
+
+            xPrev = x;
+            x = x.next;
         }
-        return element;
+
+        throw new IllegalStateException("Should never come here");
     }
 
     @Override
