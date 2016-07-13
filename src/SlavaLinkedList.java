@@ -183,20 +183,21 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
+        if (size == index) {
+            add(element);
+            return;
+        }
+
         Node<E> x = mFirst;
         Node<E> xPrev = null;
         Node<E> newX = new Node<E>(element, x.next);
         for (int i = 0; i < size; i++) {
-            if (index == 0) {
-                newX.next = x;
-                mFirst = newX;
-                break;
-            } else if (size == index) {
-                add(element);
-                size--;
-                break;
-            } else if (i == index) {
-                xPrev.next = newX;
+            if (index == i) {
+                if (index == 0){
+                    mFirst = newX;
+                } else {
+                    xPrev.next = newX;
+                }
                 newX.next = x;
                 break;
             }
