@@ -52,6 +52,26 @@ public class SlavaLinkedListTest {
 
     @Test
     public void add() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("3rd");
+        list.add(null);
+        list.add("");
+        list.add("2nd");
+        list.add("4th");
+        list.add(3, "30");
+        list.add("");
+        list.add(0, "first");
+        list.add(8, "11th");
+        assertEquals(9, list.size());
+        assertEquals("first", list.get(0));
+        assertEquals("3rd", list.get(1));
+        assertEquals(null, list.get(2));
+        assertEquals("", list.get(3));
+        assertEquals("30", list.get(4));
+        assertEquals("2nd", list.get(5));
+        assertEquals("4th", list.get(6));
+        assertEquals("", list.get(7));
+        assertEquals("11th", list.get(8));
 
     }
 

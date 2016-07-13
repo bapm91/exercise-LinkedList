@@ -176,16 +176,34 @@ public class SlavaLinkedList<E> implements List<E> {
             Node<E> x = mFirst;
             for (int i = 1; i <= index; i++) {
                 x = x.next;
-
             }
             return x.item = element;
         }
-
     }
 
     @Override
     public void add(int index, E element) {
-
+        Node<E> x = mFirst;
+        Node<E> xPrev = null;
+        Node<E> newX = new Node<E>(element, x.next);
+        for (int i = 0; i < size; i++) {
+            if (index == 0) {
+                newX.next = x;
+                mFirst = newX;
+                break;
+            } else if (size == index) {
+                add(element);
+                size--;
+                break;
+            } else if (i == index) {
+                xPrev.next = newX;
+                newX.next = x;
+                break;
+            }
+            xPrev = x;
+            x = x.next;
+        }
+        size++;
     }
 
     @Override
@@ -196,12 +214,10 @@ public class SlavaLinkedList<E> implements List<E> {
 
         Node<E> x = mFirst;
         Node<E> xPrev = null;
-
         for (int i = 0; i < size; i++) {
             if (i == index) {
                 return destroy(xPrev, x);
             }
-
             xPrev = x;
             x = x.next;
         }
