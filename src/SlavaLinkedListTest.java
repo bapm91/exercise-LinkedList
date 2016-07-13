@@ -73,6 +73,8 @@ public class SlavaLinkedListTest {
         assertEquals("", list.get(7));
         assertEquals("11th", list.get(8));
 
+
+
     }
 
     @Test
@@ -259,6 +261,22 @@ public class SlavaLinkedListTest {
 
     @Test
     public void indexOf() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("first");
+        list.add("3rd");
+        list.add(null);
+        list.add("11th");
+        list.add("3rd");
+        list.add("2nd");
+        list.add("4th");
+        list.add("first");
+        list.add("11th");
+        list.add("2nd");
+        assertEquals(5, list.indexOf("2nd"));
+        assertEquals(0, list.indexOf("first"));
+        assertEquals(1, list.indexOf("3rd"));
+        assertEquals(3, list.indexOf("11th"));
+        assertEquals(2, list.indexOf(null));
 
     }
 

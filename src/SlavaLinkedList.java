@@ -190,10 +190,10 @@ public class SlavaLinkedList<E> implements List<E> {
 
         Node<E> x = mFirst;
         Node<E> xPrev = null;
-        Node<E> newX = new Node<E>(element, x.next);
+        Node<E> newX = new Node<>(element, x.next);
         for (int i = 0; i < size; i++) {
             if (index == i) {
-                if (index == 0){
+                if (index == 0) {
                     mFirst = newX;
                 } else {
                     xPrev.next = newX;
@@ -228,7 +228,23 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        int index = -1;
+        Node<E> x = mFirst;
+        for (int i = 0; i < size; i++) {
+            if (o == null) {
+                if (x.item == null){
+                    index = i;
+                    break;
+                }
+            } else {
+                if (o.equals(x.item)) {
+                    index = i;
+                    break;
+                }
+            }
+            x = x.next;
+        }
+        return index;
     }
 
     @Override
