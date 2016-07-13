@@ -59,36 +59,32 @@ public class SlavaLinkedListTest {
     public void remove() throws Exception {
         List<String> list = new SlavaLinkedList<>();
         list.add("first");
-        list.add(null);
-        list.add("third");
+        list.add("3rd");
+        list.add("2nd");
         list.add("");
-        list.remove(3);
-        assertEquals("third", list.get(2));
-        list.remove(0);
-        assertEquals(2, list.size());
-        assertEquals("third", list.get(1));
-        list.clear();
-        assertEquals(0, list.size());
+        list.add("3rd");
+        list.add("2nd");
+        list.add("4th");
+        list.add("");
+        list.add("11th");
 
-        list.add("first");
-        list.add("2");
-        list.remove(1);
-        assertEquals(1, list.size());
-        assertEquals("first", list.get(0));
+        assertTrue(list.remove("3rd"));
+        assertEquals(8 , list.size());
+        assertEquals("2nd", list.get(1));
 
-        try {
-            list.get(5);
-            fail("IndexOutOfBoundsException expected here");
-        } catch (IndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
+        assertTrue(list.remove(""));
+        assertEquals(7 , list.size());
+        assertEquals("3rd", list.get(2));
 
-        try {
-            list.get(-1);
-            fail("IndexOutOfBoundsException expected here");
-        } catch (IndexOutOfBoundsException e) {
-            assertTrue(true);
-        }
+        assertTrue(list.remove("11th"));
+        assertEquals(6 , list.size());
+        assertEquals("", list.get(5));
+
+        assertFalse(list.remove("15th"));
+        assertEquals(6 , list.size());
+
+
+
     }
 
     @Test

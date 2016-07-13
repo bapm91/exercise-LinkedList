@@ -62,14 +62,16 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
-//        Node<E> x = mFirst;
-        if (size != 0) {
-            mFirst = null;
-            size--;
-            return true;
-        } else {
-            return false;
+        Node<E> x = mFirst;
+        for (int i = 0; i <= size - 1; i++) {
+            if (o.equals(x.item)) {
+                remove(i);
+                return true;
+            } else {
+                x = x.next;
+            }
         }
+        return false;
     }
 
     @Override
