@@ -63,12 +63,17 @@ public class SlavaLinkedList<E> implements List<E> {
     @Override
     public boolean remove(Object o) {
         Node<E> x = mFirst;
-        for (int i = 0; i <= size - 1; i++) {
-            if (o.equals(x.item)) {
-                remove(i);
-                return true;
+        for (int i = 0; i <= size - 1; i++, x = x.next) {
+            if (o == null ){
+                if (x.item == null){
+                    remove(i);
+                    return true;
+                }
             } else {
-                x = x.next;
+                if (x.item != null && o.equals(x.item)){
+                    remove(i);
+                    return true;
+                }
             }
         }
         return false;
@@ -162,17 +167,21 @@ public class SlavaLinkedList<E> implements List<E> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("demo");
         }
-
+        E element = mFirst.item;
         if (size == 1) {
             mFirst = null;
             mLast = null;
+            size--;
+            return element;
         }
 
         if (index == 0) {
             mFirst = mFirst.next;
+            size--;
+            return element;
         }
 
-        E element = mFirst.item;
+
         Node<E> x = mFirst;
         for (int i = 1; i <= size; i++) {
             if (i != index) {

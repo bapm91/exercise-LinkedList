@@ -56,6 +56,21 @@ public class SlavaLinkedListTest {
     }
 
     @Test
+    public void removeObject_null() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("first");
+        list.remove(null);
+        assertEquals(1, list.size());
+
+        list = new SlavaLinkedList<>();
+        list.add(null);
+        list.remove("something");
+        assertEquals(1, list.size());
+        list.remove(null);
+        assertEquals(0, list.size());
+    }
+
+    @Test
     public void remove() throws Exception {
         List<String> list = new SlavaLinkedList<>();
         list.add("first");
