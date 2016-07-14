@@ -145,7 +145,20 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        boolean work = false;
+        Node<E> x = this.mFirst;
+        Node<E> prevX = null;
+
+        while (x != null) {
+            if (!c.contains(x.item)) {
+                this.destroy(prevX, x);
+                work = true;
+            } else {
+                prevX = x;
+            }
+            x = x.next;
+        }
+        return work;
     }
 
     @Override

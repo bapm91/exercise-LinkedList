@@ -226,7 +226,32 @@ public class SlavaLinkedListTest {
 
     @Test
     public void retainAll() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("3rd");
+        list.add(null);
+        list.add("1");
+        list.add("2nd");
+        list.add("4th");
+        list.add("30");
+        list.add("1");
+        list.add("first");
+        list.add("11th");
 
+        List<String> from = new ArrayList<>();
+        from.add("1");
+        from.add("11th");
+        from.add(null);
+        from.add("from");
+        from.add("like");
+        from.add("3rd");
+
+        list.retainAll(from);
+        assertEquals("3rd", list.get(0));
+        assertEquals(null, list.get(1));
+        assertEquals("1", list.get(2));
+        assertEquals("1", list.get(3));
+        assertEquals("11th", list.get(4));
+        assertEquals(5, list.size());
     }
 
     @Test
