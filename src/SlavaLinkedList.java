@@ -39,7 +39,13 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] e = new Object[size];
+        Node<E> x = mFirst;
+        for (int i = 0; x!= null; i++){
+            e[i] = x.item;
+            x = x.next;
+        }
+        return e;
     }
 
     @Override

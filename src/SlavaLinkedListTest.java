@@ -43,7 +43,19 @@ public class SlavaLinkedListTest {
 
     @Test
     public void toArray() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add(null);
+        list.add("");
+        list.add("1");
+        list.add("2");
+        list.add("3");
 
+        Object[] strings = list.toArray();
+        assertEquals(5, strings.length);
+        assertEquals(null, strings[0]);
+        assertEquals("", strings[1]);
+        assertEquals("1", strings[2]);
+        assertEquals("2", strings[3]);
     }
 
     @Test
