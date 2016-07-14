@@ -122,7 +122,20 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean work = false;
+        Node<E> x = this.mFirst;
+        Node<E> prevX = null;
+
+        while (x != null) {
+            if (c.contains(x.item)) {
+                this.destroy(prevX, x);
+                work = true;
+            } else {
+                prevX = x;
+            }
+            x = x.next;
+        }
+        return work;
     }
 
     @Override
@@ -232,7 +245,7 @@ public class SlavaLinkedList<E> implements List<E> {
         Node<E> x = mFirst;
         for (int i = 0; i < size; i++) {
             if (o == null) {
-                if (x.item == null){
+                if (x.item == null) {
                     index = i;
                     break;
                 }
@@ -253,7 +266,7 @@ public class SlavaLinkedList<E> implements List<E> {
         Node<E> x = mFirst;
         for (int i = 0; i < size; i++) {
             if (o == null) {
-                if (x.item == null){
+                if (x.item == null) {
                     index = i;
                 }
             } else {

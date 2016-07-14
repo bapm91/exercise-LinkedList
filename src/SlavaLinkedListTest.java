@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -191,7 +192,31 @@ public class SlavaLinkedListTest {
 
     @Test
     public void removeAll() throws Exception {
+        List<String> list = new SlavaLinkedList<>();
+        list.add("3rd");
+        list.add(null);
+        list.add("1");
+        list.add("2nd");
+        list.add("4th");
+        list.add("30");
+        list.add("1");
+        list.add("first");
+        list.add("11th");
 
+        List<String> from = new ArrayList<>();
+        from.add("1");
+        from.add("11th");
+        from.add(null);
+        from.add("from");
+        from.add("like");
+        from.add("3rd");
+
+        list.removeAll(from);
+        assertEquals("2nd", list.get(0));
+        assertEquals("4th", list.get(1));
+        assertEquals("30", list.get(2));
+        assertEquals("first", list.get(3));
+        assertEquals(4, list.size());
     }
 
     @Test
