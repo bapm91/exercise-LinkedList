@@ -4,13 +4,13 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-public class SlavaLinkedList<E> implements List<E> {
+public class SlavaSinglyLinkedList<E> implements List<E> {
 
     private transient int size = 0;
     private transient Node<E> mFirst;
     private transient Node<E> mLast;
 
-    public SlavaLinkedList() {
+    public SlavaSinglyLinkedList() {
     }
 
     public int size() {
@@ -41,7 +41,7 @@ public class SlavaLinkedList<E> implements List<E> {
     public Object[] toArray() {
         Object[] e = new Object[size];
         Node<E> x = mFirst;
-        for (int i = 0; x!= null; i++){
+        for (int i = 0; x != null; i++) {
             e[i] = x.item;
             x = x.next;
         }
@@ -50,7 +50,13 @@ public class SlavaLinkedList<E> implements List<E> {
 
     @Override
     public <T> T[] toArray(T[] a) {
-        return null;
+        final T[] e = Arrays.copyOf(a, size);
+        Node<E> x = mFirst;
+        for (int i = 0; x != null; i++) {
+            e[i] = (T) x.item;
+            x = x.next;
+        }
+        return e;
     }
 
     @Override
@@ -341,69 +347,6 @@ public class SlavaLinkedList<E> implements List<E> {
     private boolean isPositionIndex(int index) {
         return index >= 0 && index <= size;
     }
-
-
-//    private class SlavaListIterator implements ListIterator<E>{
-//        private Node<E> lastReturned;
-//        private Node<E> next;
-//        private int nextIndex;
-//        private int expectedModCount = modCount;
-//
-//        SlavaListIterator(int index){
-//            if (index == size) {
-//                next = null;
-//            } else {
-//                next = node(index);
-//            }
-//
-//            nextIndex = index;
-//        }
-//
-//        @Override
-//        public boolean hasNext() {
-//            return false;
-//        }
-//
-//        @Override
-//        public E next() {
-//            return null;
-//        }
-//
-//        @Override
-//        public boolean hasPrevious() {
-//            return false;
-//        }
-//
-//        @Override
-//        public E previous() {
-//            return null;
-//        }
-//
-//        @Override
-//        public int nextIndex() {
-//            return 0;
-//        }
-//
-//        @Override
-//        public int previousIndex() {
-//            return 0;
-//        }
-//
-//        @Override
-//        public void remove() {
-//
-//        }
-//
-//        @Override
-//        public void set(E e) {
-//
-//        }
-//
-//        @Override
-//        public void add(E e) {
-//
-//        }
-//    }
 
 //    Node<E> node(int index) {
 //        // assert isElementIndex(index);

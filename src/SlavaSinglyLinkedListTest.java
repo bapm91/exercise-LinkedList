@@ -4,7 +4,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class SlavaLinkedListTest {
+public class SlavaSinglyLinkedListTest {
     @org.junit.Before
     public void setUp() throws Exception {
 
@@ -12,7 +12,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void size() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         assertEquals(0, list.size());
         list.add("yo");
         list.add("ynbivfo");
@@ -25,7 +25,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void isEmpty() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         assertEquals(true, list.isEmpty());
         list.add("yo");
         list.add("ynbivfo");
@@ -43,7 +43,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void toArray() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add(null);
         list.add("");
         list.add("1");
@@ -65,7 +65,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void add() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("3rd");
         list.add(null);
         list.add("");
@@ -92,12 +92,12 @@ public class SlavaLinkedListTest {
 
     @Test
     public void removeObject_null() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("first");
         list.remove(null);
         assertEquals(1, list.size());
 
-        list = new SlavaLinkedList<>();
+        list = new SlavaSinglyLinkedList<>();
         list.add(null);
         list.remove("something");
         assertEquals(1, list.size());
@@ -107,7 +107,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void remove() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("first");
         list.add("3rd");
         list.add(null);
@@ -138,15 +138,8 @@ public class SlavaLinkedListTest {
     }
 
     @Test
-    public void remove_garbagePrev() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
-        list.add("first");
-        list.add("second");
-    }
-
-    @Test
     public void remove_one() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("first");
         list.remove(0);
         assertEquals(0, list.size());
@@ -158,7 +151,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void remove_oneBadMLast() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("first");
         list.add("2nd");
         list.add("3rd");
@@ -204,7 +197,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void removeAll() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("3rd");
         list.add(null);
         list.add("1");
@@ -238,7 +231,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void retainAll() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("3rd");
         list.add(null);
         list.add("1");
@@ -278,7 +271,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void get() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("yo");
         list.add("ynbivfo");
         list.add("yvro");
@@ -302,7 +295,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void set() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("yo");
         list.add("ynbivfo");
         list.add("yvro");
@@ -323,7 +316,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void indexOf() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("first");
         list.add("3rd");
         list.add(null);
@@ -345,7 +338,7 @@ public class SlavaLinkedListTest {
 
     @Test
     public void lastIndexOf() throws Exception {
-        List<String> list = new SlavaLinkedList<>();
+        List<String> list = new SlavaSinglyLinkedList<>();
         list.add("first");
         list.add("3rd");
         list.add(null);
