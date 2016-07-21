@@ -64,8 +64,8 @@ public class SlavaDoublyLinkedListTest extends SlavaSinglyLinkedListTest {
 
         try {
             list.add(11, "");
-            fail("ArrayIndexOutOfBoundsException expected here");
-        } catch (ArrayIndexOutOfBoundsException e) {
+            fail("IndexOutOfBoundsException expected here");
+        } catch (IndexOutOfBoundsException e) {
             assertTrue(true);
         }
 
