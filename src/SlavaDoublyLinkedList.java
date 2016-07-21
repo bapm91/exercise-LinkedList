@@ -222,17 +222,14 @@ public class SlavaDoublyLinkedList<E> implements List<E> {
         Node<E> x = mFirst;
         Node<E> newX = new Node<>(x.prev, element, x);
 
-        if (index == 0) {
-            mFirst = newX;
-            newX.next = x;
-            size++;
-            return;
-        }
-
         for (int i = 0; i < size; i++) {
             if (index == i) {
                 newX.prev = x.prev;
-                x.prev.next = newX;
+                if (x.prev != null) {
+                    x.prev.next = newX;
+                } else {
+                    mFirst = newX;
+                }
                 newX.next = x;
                 x.prev = newX;
                 break;
