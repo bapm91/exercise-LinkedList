@@ -203,7 +203,7 @@ public class SlavaSinglyLinkedListTest {
         list.add("first");
         list.add("11th");
 
-        List<String> from = new ArrayList<>();
+        List<String> from = new SlavaSinglyLinkedList<>();
         from.add("1");
         from.add("11th");
         from.add(null);
@@ -236,7 +236,7 @@ public class SlavaSinglyLinkedListTest {
         list.add("first");
         list.add("11th");
 
-        List<String> from = new ArrayList<>();
+        List<String> from = new SlavaSinglyLinkedList<>();
         from.add("1");
         from.add("11th");
         from.add(null);

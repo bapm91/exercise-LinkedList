@@ -24,6 +24,19 @@ public class SlavaDoublyLinkedList<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
+        Node<E> x = mFirst;
+        for (int i = 0; i < size; i++) {
+            if (o == null) {
+                if (x.item == null) {
+                    return  true;
+                }
+            } else {
+                if (o.equals(x.item)) {
+                    return  true;
+                }
+            }
+            x = x.next;
+        }
         return false;
     }
 
