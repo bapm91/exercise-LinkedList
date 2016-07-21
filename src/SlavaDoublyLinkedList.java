@@ -180,9 +180,7 @@ public class SlavaDoublyLinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("demo");
-        }
+        checkExistingIndex(index);
 
         Node<E> x = mFirst;
         for (int i = 0; i <= index; i++, x = x.next) {
@@ -196,9 +194,8 @@ public class SlavaDoublyLinkedList<E> implements List<E> {
 
     @Override
     public E set(int index, E element) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("demo");
-        }
+        checkExistingIndex(index);
+
         Node<E> x = mFirst;
         for (int i = 0; i <= index; i++, x = x.next) {
             if (i == index) {
@@ -210,9 +207,7 @@ public class SlavaDoublyLinkedList<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
-        if (index < 0 || index > size) {
-            throw new ArrayIndexOutOfBoundsException("demo");
-        }
+        checkPositionIndex(index);
 
         if (size == index) {
             add(element);
@@ -241,9 +236,7 @@ public class SlavaDoublyLinkedList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("demo");
-        }
+        checkExistingIndex(index);
 
         Node<E> x = mFirst;
         for (int i = 0; i < size; i++) {
@@ -327,9 +320,16 @@ public class SlavaDoublyLinkedList<E> implements List<E> {
         return null;
     }
 
+    private void checkExistingIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("demo");
+        }
+    }
+
     private void checkPositionIndex(int index) {
-        if (!isPositionIndex(index))
+        if (!isPositionIndex(index)) {
             throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+        }
     }
 
     private String outOfBoundsMsg(int index) {
@@ -340,21 +340,6 @@ public class SlavaDoublyLinkedList<E> implements List<E> {
         return index >= 0 && index <= size;
     }
 
-//    Node<E> node(int index) {
-//        // assert isElementIndex(index);
-//
-//        if (index < (size >> 1)) {
-//            Node<E> x = mFirst;
-//            for (int i = 0; i < index; i++)
-//                x = x.next;
-//            return x;
-//        } else {
-//            Node<E> x = mLast;
-//            for (int i = size - 1; i > index; i--)
-//                x = x.prev;
-//            return x;
-//        }
-//    }
 
     private static class Node<E> {
         E item;
