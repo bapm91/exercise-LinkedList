@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -5,11 +6,15 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class SlavaDoublyLinkedListTest {
+public class SlavaDoublyLinkedListTest extends SlavaSinglyLinkedListTest {
+
+    @Override @Before
+    public void setUp(){
+        list = new SlavaDoublyLinkedList<>();
+    }
 
     @Test
     public void add() throws Exception {
-        List<String> list = new SlavaDoublyLinkedList<>();
         list.add("one");
         list.add("two");
         list.add("");
@@ -82,7 +87,6 @@ public class SlavaDoublyLinkedListTest {
 
     @Test
     public void remove() throws Exception {
-        List<String> list = new SlavaDoublyLinkedList<>();
         list.add("first");
         list.add("2nd");
         list.add("3rd");
@@ -134,7 +138,6 @@ public class SlavaDoublyLinkedListTest {
 
     @Test
     public void get() throws Exception {
-        List<String> list = new SlavaDoublyLinkedList<>();
         list.add("yo");
         list.add("ynbivfo");
         list.add("yvro");
@@ -158,7 +161,6 @@ public class SlavaDoublyLinkedListTest {
 
     @Test
     public void removeAll() throws Exception {
-        List<String> list = new SlavaDoublyLinkedList<>();
         list.add("3rd");
         list.add(null);
         list.add("1");
@@ -183,13 +185,10 @@ public class SlavaDoublyLinkedListTest {
         assertEquals("30", list.get(2));
         assertEquals("first", list.get(3));
         assertEquals(4, list.size());
-
-
     }
 
     @Test
     public void retainAll() throws Exception {
-        List<String> list = new SlavaDoublyLinkedList<>();
         list.add("3rd");
         list.add(null);
         list.add("1");
@@ -220,7 +219,6 @@ public class SlavaDoublyLinkedListTest {
 
     @Test
     public void set() throws Exception {
-        List<String> list = new SlavaDoublyLinkedList<>();
         list.add("");
         list.add(null);
         list.add("three");
@@ -237,7 +235,4 @@ public class SlavaDoublyLinkedListTest {
         assertEquals(null, list.get(6));
         assertEquals(7, list.size());
     }
-
-
-
 }
