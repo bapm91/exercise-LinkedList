@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package com.exemple.kulynych.linkedList;
+
 import java.util.List;
 
 import static org.junit.Assert.*;
