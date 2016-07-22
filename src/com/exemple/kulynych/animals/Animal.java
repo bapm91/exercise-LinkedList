@@ -1,4 +1,4 @@
-package com.exemple.kulynych.linkedList.animals;
+package com.exemple.kulynych.animals;
 
 public class Animal {
     protected String color;
@@ -37,7 +37,6 @@ public class Animal {
 
         if (weight != animal.weight) return false;
         return color.equals(animal.color);
-
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.exemple.kulynych.linkedList.animals;
+package com.exemple.kulynych.animals;
 
 public class Whale extends Animal{
     private int length;

@@ -1,6 +1,6 @@
-package com.exemple.kulynych.linkedList;
+package com.exemple.kulynych.list;
 
-import com.exemple.kulynych.linkedList.animals.Cat;
+import com.exemple.kulynych.animals.Cat;
 import org.junit.Before;
 import org.junit.Test;
 

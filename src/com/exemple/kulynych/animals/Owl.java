@@ -1,4 +1,4 @@
-package com.exemple.kulynych.linkedList.animals;
+package com.exemple.kulynych.animals;
 
 public class  Owl extends Animal{
     private int wingspan;

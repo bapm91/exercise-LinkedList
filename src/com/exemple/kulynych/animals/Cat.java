@@ -1,4 +1,4 @@
-package com.exemple.kulynych.linkedList.animals;
+package com.exemple.kulynych.animals;
 
 public class Cat extends Animal{
     private String name;

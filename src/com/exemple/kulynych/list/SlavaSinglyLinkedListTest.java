@@ -1,4 +1,4 @@
-package com.exemple.kulynych.linkedList;
+package com.exemple.kulynych.list;
 
 import java.util.List;
 
