@@ -10,12 +10,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class SlavaDoublyLinkedListTest extends SlavaSinglyLinkedListTest {
+public class SlavaDoublyLinkedListTest{
 
     private List<Cat> catList;
     private Cat cat0, cat1, cat2, cat3, cat4, cat5;
 
-    @Override
     @Before
     public void setUp() {
         catList = new SlavaDoublyLinkedList<Cat>();

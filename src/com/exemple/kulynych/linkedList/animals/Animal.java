@@ -21,6 +21,14 @@ public class Animal {
     }
 
     @Override
+    public String toString() {
+        return "Animal{" +
+                "color='" + color + '\'' +
+                ", weight=" + weight +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

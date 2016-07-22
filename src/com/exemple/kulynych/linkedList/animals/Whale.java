@@ -13,6 +13,15 @@ public class Whale extends Animal{
     }
 
     @Override
+    public String toString() {
+        return "Whale{" +
+                "color='" + "blue" + '\'' +
+                ", weight=" + weight +
+                ", length=" + length +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
