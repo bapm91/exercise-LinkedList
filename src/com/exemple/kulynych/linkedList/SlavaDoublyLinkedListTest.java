@@ -7,11 +7,14 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class SlavaDoublyLinkedListTest extends SlavaSinglyLinkedListTest {
 
     private List<Cat> catList;
     private Cat cat0, cat1, cat2, cat3, cat4, cat5;
+
     @Override
     @Before
     public void setUp() {
@@ -33,10 +36,9 @@ public class SlavaDoublyLinkedListTest extends SlavaSinglyLinkedListTest {
     @Test
     public void add() throws Exception {
         assertEquals(6, catList.size());
-        assertEquals(, catList.get(0));
-
-        assertEquals(cat1, catList.get(2));
-        assertEquals(cat3, catList.get(4));
+        assertEquals(new Cat("gray", 3, "Мурчик"), catList.get(0));
+        assertEquals(new Cat("green", 4, "Меля"), catList.get(2));
+        assertEquals(new Cat("red", 5, "Барсик"), catList.get(4));
 
     }
 
@@ -48,8 +50,8 @@ public class SlavaDoublyLinkedListTest extends SlavaSinglyLinkedListTest {
 
         assertEquals(3, catList.size());
         assertEquals(cat0, catList.get(0));
-        assertEquals(cat2, catList.get(1));
-        assertEquals(cat3, catList.get(2));
+        assertEquals(new Cat("blue", 9, "Бублик"), catList.get(1));
+        assertEquals(new Cat("red", 5, "Барсик"), catList.get(2));
     }
 
     @Test
@@ -61,19 +63,28 @@ public class SlavaDoublyLinkedListTest extends SlavaSinglyLinkedListTest {
         list2.add(cat7);
         catList.removeAll(list2);
 
-        assertEquals(3 ,catList.size());
+        assertEquals(3, catList.size());
 
     }
 
     @Test
     public void retainAll() throws Exception {
+        List<Cat> list2 = new SlavaDoublyLinkedList<>();
+        Cat cat6 = new Cat("red", 5, "Барсик");
+        Cat cat7 = new Cat("black", 3, "Мурчик");
+        list2.add(cat6);
+        list2.add(cat7);
+        catList.retainAll(list2);
+
+        assertEquals(3, catList.size());
+        assertEquals(new Cat("red", 5, "Барсик"), catList.get(1));
 
     }
 
     @Test
     public void contains() throws Exception {
 
+        assertTrue(catList.contains(new Cat("blue", 9, "Бублик")));
+        assertFalse(catList.contains(new Cat("blue", 9, "Bublyck")));
     }
-
-
 }

@@ -11,4 +11,23 @@ public class  Owl extends Animal{
     public int getWingspan() {
         return wingspan;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Owl owl = (Owl) o;
+
+        return wingspan == owl.wingspan;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + wingspan;
+        return result;
+    }
 }
